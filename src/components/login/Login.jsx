@@ -1,13 +1,13 @@
-
-import './login.css'
+import './login.css';
 import { useState } from "react";
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import {auth, db} from '../../../lib/firebase';
-import {doc, setDoc} from 'firebase/firestore';
+import { auth, db } from '../../../lib/firebase';
+import { doc, setDoc } from 'firebase/firestore';
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -24,8 +24,9 @@ const Login = () => {
         } finally {
           setLoading(false);
         }
-      };
-      const handleRegister = async (e) => {
+    };
+
+    const handleRegister = async (e) => {
         e.preventDefault();
         setLoading(true);
         const formData = new FormData(e.target);
@@ -51,32 +52,46 @@ const Login = () => {
         } finally {
           setLoading(false);
         }
-      };
+    };
 
-    return ( 
-    <div className="login">
-        <div className="item">
-        <h1>User Login </h1>
-        <form onSubmit={handleLogin}>
-            <input type='text' placeholder='email' name="email"/>
-            <input type='password' placeholder='Password' name="password"/>
-            <button disabled={loading}>{loading ? "Loading" : "Sign In"}</button>
-        </form>
+    return (
+        <div className="login">
+            <div className="overlay">
+                <div className="toggle-buttons">
+                    <button 
+                        className={`toggle-button ${isLogin ? 'active' : ''}`} 
+                        onClick={() => setIsLogin(true)}
+                    >
+                        Login
+                    </button>
+                    <button 
+                        className={`toggle-button ${!isLogin ? 'active' : ''}`} 
+                        onClick={() => setIsLogin(false)}
+                    >
+                        Register
+                    </button>
+                </div>
+            </div>
+            <div className={`item ${isLogin ? 'active' : ''}`}>
+                <h1>User Login</h1>
+                <form onSubmit={handleLogin}>
+                    <input type='text' placeholder='Email' name="email" />
+                    <input type='password' placeholder='Password' name="password" />
+                    <button disabled={loading}>{loading ? "Loading" : "Sign In"}</button>
+                </form>
+            </div>
+            <div className={`item ${!isLogin ? 'active' : ''}`}>
+                <h1>User Register</h1>
+                <form onSubmit={handleRegister}>
+                    <input type='text' placeholder='Username' name="username" />
+                    <input type='text' placeholder='Email' name="email" />
+                    <input type='password' placeholder='Password' name="password" />
+                    <button disabled={loading}>{loading ? "Loading" : "Register"}</button>
+                </form>
+            </div>
+            <div className="separator"></div>
         </div>
-        <div className="separator"></div>
-        <div className="item">
-        <h1>User Register </h1>
-        <form onSubmit={handleRegister}>
-            <input type='text' placeholder='Username' name="username"/>
-            <input type='text' placeholder='Email' name="email"/>
-            <input type='password' placeholder='Password' name="password"/>
-            <button disabled={loading}>{loading ? "Loading" : "Sign In"}</button>
-        </form>
-        </div>
-    </div>
-    
     );
 }
 
-export default Login; 
- 
+export default Login;
