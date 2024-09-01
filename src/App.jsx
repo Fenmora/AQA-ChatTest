@@ -9,11 +9,8 @@ import { useUserStore } from "../lib/userStore";
 
 const App = () => {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
-  
-
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
-      console.log(currentUser)
       fetchUserInfo(user?.uid);
     });
 

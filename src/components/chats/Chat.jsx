@@ -10,7 +10,6 @@ const Chat = () => {
     setText((prev) => prev + e.emoji);
     setOpen(false);
   };
-  console.log(text);
 
   return (
     <div className="chat">
@@ -101,12 +100,6 @@ const Chat = () => {
         </div>
       </div>
       <div className="bottom">
-        {/* <div className="icons">
-          <img src="./img.png" alt="" />
-          <img src="./camera.png" alt="" />
-          <img src="./mic.png" alt="" />
-        </div> */}
-
         <input type="text" name="" id="" placeholder="Type a message.." value={text} onChange={(e) => setText(e.target.value)} />
 
         <div className="emoji">
