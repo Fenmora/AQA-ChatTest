@@ -1,24 +1,14 @@
 import "./addUser.css";
-import { db } from "../../../../../lib/firebase";
-import {
-  arrayUnion,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  serverTimestamp,
-  setDoc,
-  updateDoc,
-  where,
-} from "firebase/firestore";
+import { arrayUnion, collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
 import { useState } from "react";
-import { useUserStore } from "../../../../../lib/userStore";  
+import { db } from "../../../../../lib/firebase";
+import { useUserStore } from "../../../../../lib/userStore";
+
 const AddUser = () => {
   const [user, setUser] = useState(null);
-
   const { currentUser } = useUserStore();
 
+  // event to handle search
   const handleSearch = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -38,7 +28,8 @@ const AddUser = () => {
       console.log(err);
     }
   };
-
+  
+  // event to handle Add users
   const handleAdd = async () => {
     const chatRef = collection(db, "chats");
     const userChatsRef = collection(db, "userchats");
@@ -51,9 +42,9 @@ const AddUser = () => {
         messages: [],
       });
 
-      console.log(newChatRef.id)
-      console.log(user.id)
-      console.log(user.id)
+      console.log(newChatRef.id);
+      console.log(user.id);
+      console.log(user.id);
 
       await updateDoc(doc(userChatsRef, user.id), {
         chats: arrayUnion({
