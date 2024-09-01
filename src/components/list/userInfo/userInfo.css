@@ -26,4 +26,17 @@
     height: 20px;
     cursor: pointer;
   }
+  .sendButton {
+    background-color: #fe5151;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:disabled {
+      background-color: #fe5151b4;
+      cursor: not-allowed;
+    }
+  }
 }

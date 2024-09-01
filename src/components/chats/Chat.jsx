@@ -4,7 +4,7 @@ import EmojiPicker from "emoji-picker-react";
 
 const Chat = () => {
   const [Open, setOpen] = useState(false);
-  const [text, setText] = useState(false);
+  const [text, setText] = useState("");
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
@@ -101,11 +101,11 @@ const Chat = () => {
         </div>
       </div>
       <div className="bottom">
-        <div className="icons">
+        {/* <div className="icons">
           <img src="./img.png" alt="" />
           <img src="./camera.png" alt="" />
           <img src="./mic.png" alt="" />
-        </div>
+        </div> */}
 
         <input type="text" name="" id="" placeholder="Type a message.." value={text} onChange={(e) => setText(e.target.value)} />
 
