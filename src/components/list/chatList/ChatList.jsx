@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./chatList.css";
 import AddUser from "./addUser/addUser";
-import { useChatStore } from "../../../../lib/chatStorage";
+import { useChatStore } from "../../../../lib/chatStore";
 import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../../../../lib/firebase";
 import { useUserStore } from "../../../../lib/userStore";
@@ -13,6 +13,7 @@ const ChatList = () => {
 
   const { currentUser } = useUserStore();
   const { chatId, changeChat } = useChatStore();
+  console.log(chatId)
 
   useEffect(() => {
     const unSub = onSnapshot(
@@ -41,6 +42,14 @@ const ChatList = () => {
   }, [currentUser.id]);
 
   const handleSelect = async (chat) => {
+
+       // If chat or chatId is undefined, set chatId to 0
+       if (!chat) {
+        chat = { chatId: 0, user: {} };  // Setting default values if chat is undefined
+      } else if (!chat.chatId) {
+        chat.chatId = 0;  // Setting chatId to 0 if it's undefined
+      }
+      
     const userChats = chats.map((item) => {
       const { user, ...rest } = item;
       return rest;

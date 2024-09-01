@@ -1,10 +1,41 @@
-import { useState } from "react";
 import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
+import { useEffect, useRef, useState } from "react";
+import {
+  arrayUnion,
+  doc,
+  getDoc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "../../../lib/firebase";
+import { useChatStore } from "../../../lib/chatStore";
+import { useUserStore } from "../../../lib/userStore";
 
 const Chat = () => {
   const [Open, setOpen] = useState(false);
   const [text, setText] = useState("");
+  const [chat, setChat] = useState();
+  const { currentUser } = useUserStore();
+  const { chatId, user} = useChatStore();
+  
+  const endRef = useRef(null);
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    const unSub = onSnapshot(doc(db, "chats",chatId), (res) => {
+      setChat(res.data());
+    });
+
+    return () => {
+      unSub();
+    };
+  }, [chatId]);
+
+  console.log(chat)
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
@@ -17,8 +48,8 @@ const Chat = () => {
         <div className="user">
           <img src="./avatar.png" alt="" />
           <div className="texts">
-            <span>Jane Doe</span>
-            <p>Lorem ipsum dolor sit amet.</p>
+            <span>{user?.username}</span>
+            <p>{user?.email}</p>
           </div>
         </div>
         <div className="icons">
@@ -39,56 +70,6 @@ const Chat = () => {
           </div>
         </div>
         <div className="message own">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              Laudantium optio magnam soluta eaque laborum dignissimos id dolorum at est iste. 
-              Praesentium esse iure temporibus animi amet rerum libero enim ex.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              Laudantium optio magnam soluta eaque laborum dignissimos id dolorum at est iste. 
-              Praesentium esse iure temporibus animi amet rerum libero enim ex.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message own">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              Laudantium optio magnam soluta eaque laborum dignissimos id dolorum at est iste. 
-              Praesentium esse iure temporibus animi amet rerum libero enim ex.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message own">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              Laudantium optio magnam soluta eaque laborum dignissimos id dolorum at est iste. 
-              Praesentium esse iure temporibus animi amet rerum libero enim ex.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message own">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-              Laudantium optio magnam soluta eaque laborum dignissimos id dolorum at est iste. 
-              Praesentium esse iure temporibus animi amet rerum libero enim ex.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message">
           <img src="./avatar.png" alt="" />
           <div className="texts">
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
