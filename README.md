@@ -56,7 +56,7 @@ project/
     ```
     - Run the project 
      ```sh
-     npm run wdio
+     npm run dev
 
 
 3. To run the automation 
