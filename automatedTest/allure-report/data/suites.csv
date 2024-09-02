@@ -1,8 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","106","Given I am on the login page","","Sun Sep 01 16:53:26 CST 2024","passed","Sun Sep 01 16:53:26 CST 2024","","The Internet Guinea Pig Website: As a user, I can log into the secure area","",""
-"","1","hook:","","Sun Sep 01 16:53:44 CST 2024","failed","Sun Sep 01 16:53:44 CST 2024","","","",""
-"","708","When I login with foobar and barfoo","","Sun Sep 01 16:53:26 CST 2024","passed","Sun Sep 01 16:53:27 CST 2024","","The Internet Guinea Pig Website: As a user, I can log into the secure area","",""
-"","0","When I login with engineer@gmail.com and 123456","","Sun Sep 01 16:50:08 CST 2024","broken","Sun Sep 01 16:50:08 CST 2024","","The Internet Guinea Pig Website: As a user, I can log into the secure area","",""
-"","17168","Then I should see a flash message saying Your credentials aremnt invalid!","","Sun Sep 01 16:53:27 CST 2024","broken","Sun Sep 01 16:53:44 CST 2024","","The Internet Guinea Pig Website: As a user, I can log into the secure area","",""
-"","1","Then I should see a flash message saying Welcome to the  chat","","Sun Sep 01 16:50:08 CST 2024","skipped","Sun Sep 01 16:50:08 CST 2024","","The Internet Guinea Pig Website: As a user, I can log into the secure area","",""
-"","525","Then I should see a flash message saying Your credentials are invalid!","","Sun Sep 01 16:50:49 CST 2024","passed","Sun Sep 01 16:50:49 CST 2024","","The Internet Guinea Pig Website: As a user, I can log into the secure area","",""
