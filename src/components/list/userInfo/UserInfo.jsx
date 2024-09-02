@@ -8,10 +8,10 @@ const UserInfo = () => {
         <div className='userInfo'>
             <div className="user">
                 <img src="./avatar.png" alt="" />
-                <h4>{currentUser.username}</h4>
+                <h4 id="userTitle">{currentUser.username}</h4>
             </div>
             <div className="icons">
-                <button className="sendButton" onClick={ ()=>auth.signOut()}>Log Out</button>
+                <button  id="signOut" className="sendButton" onClick={ ()=>auth.signOut()}>Log Out</button>
             </div>
 
         </div>
