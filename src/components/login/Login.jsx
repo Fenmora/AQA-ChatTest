@@ -18,9 +18,10 @@ const Login = () => {
     
         try {
           await signInWithEmailAndPassword(auth, email, password);
+          toast.success("Welcome to the Fender chat!");
         } catch (err) {
           console.log(err);
-          toast.error(err.message);
+          toast.error("Your credentials are invalid!");
         } finally {
           setLoading(false);
         }
@@ -61,12 +62,14 @@ const Login = () => {
                     <button 
                         className={`toggle-button ${isLogin ? 'active' : ''}`} 
                         onClick={() => setIsLogin(true)}
+                        id="Login"
                     >
                         Login
                     </button>
                     <button 
                         className={`toggle-button ${!isLogin ? 'active' : ''}`} 
                         onClick={() => setIsLogin(false)}
+                        id="Register"
                     >
                         Register
                     </button>
@@ -74,19 +77,19 @@ const Login = () => {
             </div>
             <div className={`item ${isLogin ? 'active' : ''}`}>
                 <h1>User Login</h1>
-                <form onSubmit={handleLogin}>
-                    <input type='text' placeholder='Email' name="email" />
-                    <input type='password' placeholder='Password' name="password" />
-                    <button disabled={loading}>{loading ? "Loading" : "Sign In"}</button>
+                <form id="loginForm" onSubmit={handleLogin}>
+                    <input type='text' placeholder='Email' id ="email" name="email" />
+                    <input type='password' placeholder='Password' id ="password"  name="password" />
+                    <button id ="signIn" disabled={loading}>{loading ? "Loading" : "Sign In"}</button>
                 </form>
             </div>
             <div className={`item ${!isLogin ? 'active' : ''}`}>
                 <h1>User Register</h1>
-                <form onSubmit={handleRegister}>
-                    <input type='text' placeholder='Username' name="username" />
-                    <input type='text' placeholder='Email' name="email" />
-                    <input type='password' placeholder='Password' name="password" />
-                    <button disabled={loading}>{loading ? "Loading" : "Register"}</button>
+                <form id="signUpForm" onSubmit={handleRegister}>
+                    <input type='text' placeholder='Username' id ="usernameSignUp" name="username" />
+                    <input type='text' placeholder='Email' id ="emailSignUp" name="email" />
+                    <input type='password' placeholder='Password'  id ="passwordSignUp" name="password" />
+                    <button id ="signUp" disabled={loading}>{loading ? "Loading" : "Register"}</button>
                 </form>
             </div>
             <div className="separator"></div>

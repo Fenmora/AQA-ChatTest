@@ -79,7 +79,7 @@ const Chat = () => {
         <div className="user">
           <img src="./avatar.png" alt="" />
           <div className="texts">
-            <span>{user?.username}</span>
+            <span id='usernameChatSelectedName'>{user?.username}</span>
             <p>{user?.email}</p>
           </div>
         </div>
@@ -100,7 +100,7 @@ const Chat = () => {
         <div ref={endRef}></div>
       </div>
       <div className="bottom">
-        <input type="text" name="" id="" placeholder="Type a message.." value={text} onChange={(e) => setText(e.target.value)} />
+        <input type="text" name="" id="writeMessage" placeholder="Type a message.." value={text} onChange={(e) => setText(e.target.value)} />
 
         <div className="emoji">
           <img src="./emoji.png" alt="" onClick={() => setOpen((prev) => !prev)} />
@@ -109,7 +109,7 @@ const Chat = () => {
             <EmojiPicker open={Open} onEmojiClick={handleEmoji} />
           </div>
         </div>
-        <button className="sendButton" onClick={handleSend}>
+        <button className="sendButton" id="sendButton" onClick={handleSend}>
           Send
         </button>
       </div>

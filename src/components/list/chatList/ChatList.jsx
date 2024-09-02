@@ -92,6 +92,7 @@ const ChatList = () => {
       {filteredChats.map((chat) => (
         <div
           className="item"
+          id="ChatPerson"
           key={chat.chatId}
           onClick={() => handleSelect(chat)}
         >
@@ -102,7 +103,7 @@ const ChatList = () => {
           <div className="texts">
             <span> {chat.user.username}
             </span>
-            <p>{chat.lastMessage}</p>
+            <p id="lastChat" >{chat.lastMessage}</p>
           </div>
         </div>
       ))}
